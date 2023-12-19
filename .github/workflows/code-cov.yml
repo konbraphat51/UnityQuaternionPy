@@ -12,6 +12,7 @@ jobs:
   build:
     permissions:
       pull-requests: write
+      push: write
 
     runs-on: ubuntu-latest
     strategy:
