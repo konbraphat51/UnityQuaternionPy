@@ -137,3 +137,11 @@ def test_Inverse():
     assert inv.y == approx(-0.5, 1)
     assert inv.z == approx(-0.5, 1)
     assert inv.w == approx(0.5, 1)
+
+def test_Identity():
+    q = Quaternion.identity
+
+    assert q.x == approx(0)
+    assert q.y == approx(0)
+    assert q.z == approx(0)
+    assert q.w == approx(1)
