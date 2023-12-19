@@ -422,7 +422,7 @@ class Quaternion:
         return q.normalized
 
     def RotateTowards(
-        rotation_from: Quaternion, rotation_to: Quaternion, maxDegreesDelta: float
+        rotation_from: Quaternion, rotation_to: Quaternion, maxDegreesDelta: float = 10000
     ) -> Quaternion:
         """
         Get a rotation between 2 quaternions
