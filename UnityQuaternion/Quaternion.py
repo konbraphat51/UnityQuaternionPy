@@ -222,6 +222,32 @@ class Quaternion:
         
         return Quaternion(_x, _y, _z, _w)
     
+    def FromToRotation(fromDirection: tuple[float, float, float], toDirection: tuple[float, float, float]) -> Quaternion:
+        """
+        Creates a rotation which rotates from fromDirection to toDirection.
+
+        :param tuple[float, float, float] fromDirection: fromDirection direction vector that rotation starts from
+        :param tuple[float, float, float] toDirection: toDirection direction vector that rotation ends to
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        #normalize
+        from_direction_norm = (fromDirection[0]**2 + fromDirection[1]**2 + fromDirection[2]**2)**0.5
+        fromDirection = (fromDirection[0]/from_direction_norm, fromDirection[1]/from_direction_norm, fromDirection[2]/from_direction_norm)
+        to_direction_norm = (toDirection[0]**2 + toDirection[1]**2 + toDirection[2]**2)**0.5
+        toDirection = (toDirection[0]/to_direction_norm, toDirection[1]/to_direction_norm, toDirection[2]/to_direction_norm)
+        
+        rotationAxis = _cross_vectors(fromDirection, toDirection)
+        
+        #get angle
+        dot = fromDirection[0] * toDirection[0] + fromDirection[1] * toDirection[1] + fromDirection[2] * toDirection[2]
+        angle = math.acos(dot)
+        
+        #to degrees
+        angle = math.degrees(angle)
+        
+        return Quaternion.AngleAxis(angle, rotationAxis)
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
@@ -248,3 +274,10 @@ class Quaternion:
         #scale
         norm = self._norm
         return (rotated.x * norm, rotated.y * norm, rotated.z * norm)
+    
+def _cross_vectors(vec0: tuple[float, float, float], vec1: tuple[float, float, float]) -> tuple[float, float, float]:
+    x = vec0[1] * vec1[2] - vec0[2] * vec1[1]
+    y = vec0[2] * vec1[0] - vec0[0] * vec1[2]
+    z = vec0[0] * vec1[1] - vec0[1] * vec1[0]
+    
+    return (x,y,z)
