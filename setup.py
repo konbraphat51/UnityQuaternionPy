@@ -24,7 +24,7 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     author="konbraphat51",
-    author_email="",
+    author_email="konbraphat51[at]gmail.com",
     url="https://github.com/konbraphat51/UnityQuaternionPy/main",
     packages=find_packages(),
     test_suite="tests",
