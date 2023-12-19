@@ -341,6 +341,32 @@ class Quaternion:
         """
         return q.normalized
     
+    def RotateTowards(rotation_from: Quaternion, rotation_to: Quaternion, maxDegreesDelta: float) -> Quaternion:
+        """
+        Get a rotation between 2 quaternions
+
+        :param Quaternion rotation_from: first rotation
+        :param Quaternion rotation_to: second rotation
+        :param float maxDegreesDelta: max degrees to rotate
+        :rtype: Quaternion
+        :return: interpolated quaternion
+        """
+        
+        #normalize
+        rotation_from = rotation_from.normalized
+        rotation_to = rotation_to.normalized
+        
+        angle = Quaternion.Angle(rotation_from, rotation_to)
+        
+        if angle > maxDegreesDelta:
+            ratio = maxDegreesDelta / angle
+        else:
+            ratio = 1
+            
+        target = Quaternion.Lerp(rotation_from, rotation_to, ratio)
+        
+        return target
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
