@@ -30,3 +30,18 @@ def test_normalize():
     assert q.x == approx(0.3651484)
     assert q.y == approx(0.5477226)
     assert q.z == approx(0.7302967)
+    
+def test_normalized():
+    q = Quaternion(1,2,3,4).normalized
+    assert q.w == approx(0.1825742)
+    assert q.x == approx(0.3651484)
+    assert q.y == approx(0.5477226)
+    assert q.z == approx(0.7302967)
+    
+def test_AngleAxis():
+    q = Quaternion.AngleAxis(20, (1,2,3)).normalized
+    assert q.x == approx(0.04641)
+    assert q.y == approx(0.09282)
+    assert q.x == approx(0.13923)
+    assert q.w == approx(0.98517)
+    
