@@ -192,6 +192,36 @@ class Quaternion:
         """
         return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
     
+    def Euler(x:float, y:float, z:float) -> Quaternion:
+        """
+        Returns a rotation that rotates 
+        z degrees around the z axis, 
+        x degrees around the x axis, 
+        and y degrees around the y axis;
+        applied in that order.
+
+        :param float x: x rotation in degrees around x axis
+        :param float y: y rotation in degrees around y axis
+        :param float z: z rotation in degrees around z axis
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        # based on based on https://ohtorii.hatenadiary.jp/entry/20150424/p1
+        
+        sx = math.sin(math.radians(x) / 2)
+        cx = math.cos(math.radians(x) / 2)
+        sy = math.sin(math.radians(y) / 2)
+        cy = math.cos(math.radians(y) / 2)
+        sz = math.sin(math.radians(z) / 2)
+        cz = math.cos(math.radians(z) / 2)
+        
+        _x = cx * sy * sz + cy * cz * sx
+        _y = cx * cz * sy - cy * sx * sz
+        _z = cx * cy * sz - cz * sx * sy
+        _w = sx * sy * sz + cx * cy * cz
+        
+        return Quaternion(_x, _y, _z, _w)
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
