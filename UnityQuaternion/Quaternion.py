@@ -261,6 +261,42 @@ class Quaternion:
         
         return Quaternion(c.x/division, c.y/division, c.z/division, c.w/division)
     
+    def Lerp(a: Quaternion, b: Quaternion, t: float) -> Quaternion:
+        """
+        Interpolates between a and b by t and normalizes the result afterwards.
+        The parameter t is clamped to the range [0, 1].
+
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :param float t: interpolation parameter
+        :rtype: Quaternion
+        :return: interpolated quaternion
+        """
+        t = min(max(t, 0), 1)
+        
+        return Quaternion.LerpUnclamped(a, b, t)
+    
+    def LerpUnclamped(self, a: Quaternion, b: Quaternion, t: float) -> Quaternion:
+        """
+        Interpolates between a and b by t and normalizes the result afterwards.
+        The parameter t is not clamped.
+        
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :param float t: interpolation parameter
+        :rtype: Quaternion
+        """
+        
+        a = a.normalized
+        b = b.normalized
+        
+        x = a.x * t + (1 - t) * b.x
+        y = a.y * t + (1 - t) * b.y
+        z = a.z * t + (1 - t) * b.z
+        w = a.w * t + (1 - t) * b.w
+        
+        return Quaternion(x,y,z,w).normalized
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
