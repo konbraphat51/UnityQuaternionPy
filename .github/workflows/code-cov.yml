@@ -40,7 +40,7 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           set -o pipefail
-          python -m pytest --junitxml=pytest.xml --cov=AnimatedWordCloud --cov-report=term-missing| tee pytest-coverage.txt
+          python -m pytest --junitxml=pytest.xml --cov=UnityQuaternion --cov-report=term-missing| tee pytest-coverage.txt
 
       - name: Pytest coverage comment
         id: coverageComment
