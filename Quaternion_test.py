@@ -200,3 +200,36 @@ def test_RotateTowards_unlimited():
     assert q.y == approx(0.36515, 2)
     assert q.z == approx(0.18257, 2)
     assert q.w == approx(0.54772, 2)
+
+def test_Slerp():
+    q0 = Quaternion(1, 2, 3, 4).normalized()
+    q1 = Quaternion(4, 2, 1, 3).normalized()
+
+    q = Quaternion.Slerp(q0, q1, 0.5)
+
+    assert q.x == approx(0.48564, 2)
+    assert q.y == approx(0.38851, 2)
+    assert q.z == approx(0.38851, 2)
+    assert q.w == approx(0.6799, 2)
+
+def test_Slerp_t0():
+    q0 = Quaternion(1, 2, 3, 4).normalized()
+    q1 = Quaternion(3, 3, 4, 2).normalized()
+
+    q = Quaternion.Slerp(q0, q1, -0.1)
+
+    assert q.x == approx(q0.x, 2)
+    assert q.y == approx(q0.y, 2)
+    assert q.z == approx(q0.z, 2)
+    assert q.w == approx(q0.w, 2)
+
+def test_Slerp_t1():
+    q0 = Quaternion(1, 2, 3, 4).normalized()
+    q1 = Quaternion(3, 3, 4, 2).normalized()
+
+    q = Quaternion.Slerp(q0, q1, 1.1)
+
+    assert q.x == approx(q1.x, 2)
+    assert q.y == approx(q1.y, 2)
+    assert q.z == approx(q1.z, 2)
+    assert q.w == approx(q1.w, 2)
