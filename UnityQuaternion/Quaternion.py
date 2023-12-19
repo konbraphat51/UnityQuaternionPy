@@ -139,6 +139,34 @@ class Quaternion:
         """
         return f"({self.x:.{digits}f}, {self.y:.{digits}f}, {self.z:.{digits}f}, {self.w:.{digits}f})"
         
+    def Angle(a: Quaternion, b: Quaternion) -> float:
+        """
+        Returns the angle in degrees between two rotations a and b.
+        
+        see: https://docs.unity3d.com/ScriptReference/Quaternion.Angle.html
+        
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :rtype: float
+        :return: angle in degrees
+        """    
+        dot = Quaternion.Dot(a, b)
+        rad = math.acos(dot) * 2
+        dgrees = math.degrees(rad)
+        
+        return dgrees
+        
+    def Dot(a: Quaternion, b: Quaternion) -> float:
+        """
+        The dot product between two rotations.
+                
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :rtype: float
+        :return: dot product
+        """
+        return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
