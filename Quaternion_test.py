@@ -106,3 +106,10 @@ def test_rotate():
     assert v[0] == approx(0.18)
     assert v[1] == approx(0.71)
     assert v[2] == approx(0.68)
+    
+def test_Angle():
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(4, 2, 1, 3).normalized
+
+    assert Quaternion.Angle(q0, q1) == approx(79.88902, 2)
+
