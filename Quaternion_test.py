@@ -145,3 +145,36 @@ def test_Identity():
     assert q.y == approx(0)
     assert q.z == approx(0)
     assert q.w == approx(1)
+
+def test_Lerp():
+    q0 = Quaternion(1, 2, 3, 4)
+    q1 = Quaternion(2, 2, 2, 2)
+
+    q = Quaternion.Lerp(q0, q1, 0.5)
+
+    assert q.x == approx(0.32, 1)
+    assert q.y == approx(0.43, 1)
+    assert q.z == approx(0.54, 1)
+    assert q.w == approx(0.65, 1)
+
+def test_Lerp_t0():
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(3, 3, 4, 2).normalized
+
+    q = Quaternion.Lerp(q0, q1, -0.1)
+
+    assert q.x == approx(q0.x, 2)
+    assert q.y == approx(q0.y, 2)
+    assert q.z == approx(q0.z, 2)
+    assert q.w == approx(q0.w, 2)
+
+def test_Lerp_t1():
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(3, 3, 4, 2).normalized
+
+    q = Quaternion.Lerp(q0, q1, 1.1)
+
+    assert q.x == approx(q1.x, 2)
+    assert q.y == approx(q1.y, 2)
+    assert q.z == approx(q1.z, 2)
+    assert q.w == approx(q1.w, 2)
