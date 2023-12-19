@@ -120,6 +120,19 @@ class Quaternion:
         self.y = new_y
         self.z = new_z
         self.w = new_w
+        
+    def SetFromToRotation(self, from_direction: tuple[float, float, float], to_direction: tuple[float, float, float]):
+        """
+        Change value to represent the rotation from fromDirection to toDirection.
+        
+        :param tuple[float, float, float] fromDirection: fromDirection direction vector that rotation starts from
+        :param tuple[float, float, float] toDirection: toDirection direction vector that rotation ends to
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        
+        computed = Quaternion.FromToRotation(from_direction, to_direction)
+        self.Set(computed.x, computed.y, computed.z, computed.w)
     
     def ToAngleAxis(self) -> tuple[float, tuple[float, float, float]]:
         """
