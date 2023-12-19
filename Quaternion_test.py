@@ -45,3 +45,11 @@ def test_AngleAxis():
     assert q.x == approx(0.13923)
     assert q.w == approx(0.98517)
     
+def test_Set():
+    q = Quaternion(1,2,3,4)
+    q.Set(5,6,7,8)
+    assert q.w == approx(5)
+    assert q.x == approx(6)
+    assert q.y == approx(7)
+    assert q.z == approx(8)
+    
