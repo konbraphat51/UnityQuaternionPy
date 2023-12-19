@@ -95,3 +95,14 @@ def test_multiply():
     assert q.z == approx(0.2)
     assert q.w == approx(-0.4)
     
+def test_rotate():
+    q = Quaternion(1,2,3,4).normalized
+    v = (4,5,6)
+    v_norm = (4**2 + 5**2 + 6**2)**0.5
+    v = (v[0]/v_norm, v[1]/v_norm, v[2]/v_norm)
+    
+    v = q * v
+    
+    assert v[0] == approx(0.18)
+    assert v[1] == approx(0.71)
+    assert v[2] == approx(0.68)
