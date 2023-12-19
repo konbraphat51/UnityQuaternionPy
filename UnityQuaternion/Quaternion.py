@@ -331,6 +331,16 @@ class Quaternion:
         
         return second_rotation * first_rotation
     
+    def Normalize(q: Quaternion) -> Quaternion:
+        """
+        Returns a normalized quaternion.
+        
+        :param Quaternion q: quaternion to normalize
+        :rtype: Quaternion
+        :return: normalized quaternion
+        """
+        return q.normalized
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
