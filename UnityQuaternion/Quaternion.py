@@ -248,6 +248,19 @@ class Quaternion:
         
         return Quaternion.AngleAxis(angle, rotationAxis)
     
+    def Inverse(rotation: Quaternion) -> Quaternion:
+        """
+        Returns the inverse of rotation.
+
+        :param Quaternion rotation: rotation to invert
+        :rtype: Quaternion
+        :return: inverted quaternion
+        """
+        c = rotation._conjugate
+        division = rotation._norm**2
+        
+        return Quaternion(c.x/division, c.y/division, c.z/division, c.w/division)
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
