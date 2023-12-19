@@ -24,8 +24,25 @@ setup(
     install_requires=requirements_from_file("requirements.txt"),
     license="MIT License",
     zip_safe=False,
-    keywords=[],
-    classifiers=[],
+    keywords=[
+        "fromscratch",
+        "math",
+        "quaternion",
+        "geometry",
+        "rotation",
+        "3d",
+        "game",
+        "Topic :: Multimedia :: Graphics :: 3D Modeling"
+    ],
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: MIT License",
+        "Topic :: Games/Entertainment",
+        "Topic :: Multimedia :: Graphics :: Editors :: Vector-Based",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Scientific/Engineering :: Mathematics",
+        "Topic :: Utilities",
+    ],
     entry_points={
         # "console_scripts": [
         # ],
