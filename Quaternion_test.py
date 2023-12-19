@@ -128,3 +128,12 @@ def test_Euler():
     assert q.y == approx(0.18, 1)
     assert q.z == approx(0.5, 1)
     assert q.w == approx(0.68, 1)
+
+def test_Inverse():
+    q = Quaternion(0.5, 0.5, 0.5, 0.5)
+    inv = Quaternion.Inverse(q)
+
+    assert inv.x == approx(-0.5, 1)
+    assert inv.y == approx(-0.5, 1)
+    assert inv.z == approx(-0.5, 1)
+    assert inv.w == approx(0.5, 1)
