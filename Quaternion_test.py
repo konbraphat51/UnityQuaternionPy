@@ -53,3 +53,12 @@ def test_Set():
     assert q.y == approx(7)
     assert q.z == approx(8)
     
+def test_FromToRotation():
+    q = Quaternion(1,2,3,4)
+    q.SetFromToRotation((5,6,7),(1,2,3))
+    
+    assert q.x == approx(0.05137)
+    assert q.y == approx(-0.10274)
+    assert q.z == approx(0.05137)
+    assert q.w == approx(0.99205)
+    
