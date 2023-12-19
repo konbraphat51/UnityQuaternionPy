@@ -367,6 +367,41 @@ class Quaternion:
         
         return target
     
+    def Slerp(a: Quaternion, b: Quaternion, t: float) -> Quaternion:
+        """
+        Spherically interpolates between a and b by t.
+        The parameter t is clamped to the range [0, 1].
+        
+        see: https://docs.unity3d.com/ja/2023.2/ScriptReference/Quaternion.Slerp.html
+
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :param float t: interpolation parameter
+        :rtype: Quaternion
+        :return: interpolated quaternion
+        """
+        t = min(max(t, 0), 1)
+        
+        return Quaternion.SlerpUnclamped(a, b, t)
+    
+    def SlerpUnclamped(a: Quaternion, b: Quaternion, t: float) -> Quaternion:
+        """
+        Spherically interpolates between a and b by t.
+        The parameter t is not clamped.
+        
+        :param Quaternion a: first rotation
+        :param Quaternion b: second rotation
+        :param float t: interpolation parameter
+        :rtype: Quaternion
+        :return: interpolated quaternion
+        """
+        a = a.normalized
+        b = b.normalized
+        
+        t = -math.cos(t * math.pi) * 0.5 + 0.5
+        
+        return Quaternion.LerpUnclamped(a, b, t)
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
