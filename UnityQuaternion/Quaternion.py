@@ -81,7 +81,6 @@ class Quaternion:
         norm = self._norm
         return Quaternion(self.x / norm, self.y / norm, self.z / norm, self.w / norm)
 
-    @property
     def identity() -> Quaternion:
         """
         Returns the identity quaternion (0,0,0,1)
@@ -89,7 +88,7 @@ class Quaternion:
         :rtype: Quaternion
         :return: identity quaternion
         """
-        return Quaternion(0, 0, 0, 1)
+        return 
 
     def __mul__(
         self, other: Quaternion | tuple[float, float, float]

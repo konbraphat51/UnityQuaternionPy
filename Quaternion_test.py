@@ -157,7 +157,7 @@ def test_Inverse():
 
 
 def test_Identity():
-    q = Quaternion.identity
+    q = Quaternion.identity()
 
     assert q.x == approx(0)
     assert q.y == approx(0)
