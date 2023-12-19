@@ -353,7 +353,7 @@ class Quaternion:
 
         return Quaternion.LerpUnclamped(a, b, t)
 
-    def LerpUnclamped(self, a: Quaternion, b: Quaternion, t: float) -> Quaternion:
+    def LerpUnclamped(a: Quaternion, b: Quaternion, t: float) -> Quaternion:
         """
         Interpolates between a and b by t and normalizes the result afterwards.
         The parameter t is not clamped.
