@@ -62,3 +62,11 @@ def test_FromToRotation():
     assert q.z == approx(0.05137)
     assert q.w == approx(0.99205)
     
+def test_LookRotation():
+    q = Quaternion(1,2,3,4)
+    q.SetLookRotation((1,1,1), (0,1,0))
+    
+    assert q.x == approx(-0.27)
+    assert q.y == approx(0.36)
+    assert q.z == approx(0.11)
+    assert q.w == approx(0.88)
