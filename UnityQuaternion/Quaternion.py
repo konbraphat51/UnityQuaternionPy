@@ -88,7 +88,7 @@ class Quaternion:
         :rtype: Quaternion
         :return: identity quaternion
         """
-        return 
+        return Quaternion(0, 0, 0, 1)
 
     def __mul__(
         self, other: Quaternion | tuple[float, float, float]
