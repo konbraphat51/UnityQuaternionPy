@@ -203,8 +203,8 @@ def test_Lerp_t1():
 
 
 def test_RotateTowards_limited():
-    q0 = Quaternion(1, 2, 3, 4).normalized()
-    q1 = Quaternion(4, 2, 1, 3).normalized()
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(4, 2, 1, 3).normalized
 
     q = Quaternion.RotateTowards(q0, q1, 30)
 
@@ -215,8 +215,8 @@ def test_RotateTowards_limited():
 
 
 def test_RotateTowards_unlimited():
-    q0 = Quaternion(1, 2, 3, 4).normalized()
-    q1 = Quaternion(4, 2, 1, 3).normalized()
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(4, 2, 1, 3).normalized
 
     q = Quaternion.RotateTowards(q0, q1)
 
@@ -227,8 +227,8 @@ def test_RotateTowards_unlimited():
 
 
 def test_Slerp():
-    q0 = Quaternion(1, 2, 3, 4).normalized()
-    q1 = Quaternion(4, 2, 1, 3).normalized()
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(4, 2, 1, 3).normalized
 
     q = Quaternion.Slerp(q0, q1, 0.5)
 
@@ -239,8 +239,8 @@ def test_Slerp():
 
 
 def test_Slerp_t0():
-    q0 = Quaternion(1, 2, 3, 4).normalized()
-    q1 = Quaternion(3, 3, 4, 2).normalized()
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(3, 3, 4, 2).normalized
 
     q = Quaternion.Slerp(q0, q1, -0.1)
 
@@ -251,8 +251,8 @@ def test_Slerp_t0():
 
 
 def test_Slerp_t1():
-    q0 = Quaternion(1, 2, 3, 4).normalized()
-    q1 = Quaternion(3, 3, 4, 2).normalized()
+    q0 = Quaternion(1, 2, 3, 4).normalized
+    q1 = Quaternion(3, 3, 4, 2).normalized
 
     q = Quaternion.Slerp(q0, q1, 1.1)
 
