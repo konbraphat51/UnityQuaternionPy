@@ -1,3 +1,3 @@
 from Quaternion import Quaternion
 
-__all__ = ['Quaternion']
+__all__ = ["Quaternion"]
