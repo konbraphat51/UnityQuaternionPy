@@ -81,5 +81,15 @@ class Quaternion:
         return Quaternion(self.x/norm, self.y/norm, self.z/norm, self.w/norm)
         
     @property
+    def identity() -> Quaternion:
+        """
+        Returns the identity quaternion (0,0,0,1)
+
+        :rtype: Quaternion
+        :return: identity quaternion
+        """
+        return Quaternion(0,0,0,1)
+        
+    @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
