@@ -9,15 +9,13 @@ Setup script for PyThaiNLP.
 https://github.com/PyThaiNLP/pythainlp
 """
 from setuptools import find_packages, setup
-
-readme = """
-(readme here)
-"""
-
+from pathlib import Path
 
 def requirements_from_file(file_name):
     return open(file_name).read().splitlines()
 
+#get README file
+readme = (Path(__file__).parent / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="UnityQuaternionPy",
