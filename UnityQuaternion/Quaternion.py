@@ -156,6 +156,31 @@ class Quaternion:
         
         return dgrees
         
+    def AngleAxis(angle: float, axis: tuple[float, float, float]) -> Quaternion:
+        """
+        Creates a rotation which rotates angle degrees around axis.
+
+        :param float angle: angle in degrees
+        :param tuple[float, float, float] axis: axis of rotation
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        # based on based on https://qiita.com/aa_debdeb/items/3d02e28fb9ebfa357eaf#%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E8%A7%92%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A9%E3%83%BC%E3%82%BF%E3%83%8B%E3%82%AA%E3%83%B3
+        rad = math.radians(angle)
+        sin_half = math.sin(rad / 2)
+        cos_half = math.cos(rad / 2)
+        
+        #normalize axis
+        norm = (axis[0]**2 + axis[1]**2 + axis[2]**2)**0.5
+        axis = (axis[0]/norm, axis[1]/norm, axis[2]/norm)
+        
+        x = axis[0] * sin_half
+        y = axis[1] * sin_half
+        z = axis[2] * sin_half
+        w = cos_half
+        
+        return Quaternion(x,y,z,w)
+        
     def Dot(a: Quaternion, b: Quaternion) -> float:
         """
         The dot product between two rotations.
