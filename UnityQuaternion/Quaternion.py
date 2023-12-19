@@ -107,6 +107,20 @@ class Quaternion:
         else:
             raise TypeError(f"unsupported operand type(s) for *: 'Quaternion' and '{type(other)}'")
     
+    def Set(self, new_x: float, new_y: float, new_z: float, new_w: float):
+        """
+        Set x, y, z, w components of an existing Quaternion.
+
+        :param float new_x: new x element
+        :param float new_y: new y element
+        :param float new_z: new z element
+        :param float new_w: new w element
+        """
+        self.x = new_x
+        self.y = new_y
+        self.z = new_z
+        self.w = new_w
+    
     def ToAngleAxis(self) -> tuple[float, tuple[float, float, float]]:
         """
         Converts a rotation to angle-axis representation (angles in degrees).
