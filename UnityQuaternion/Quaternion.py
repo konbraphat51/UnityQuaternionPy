@@ -134,6 +134,19 @@ class Quaternion:
         computed = Quaternion.FromToRotation(from_direction, to_direction)
         self.Set(computed.x, computed.y, computed.z, computed.w)
     
+    def SetLookRotation(self, view: tuple[float, float, float], upwards: tuple[float, float, float] = (0,1,0)):
+        """
+        Creates a rotation with the specified forward and upwards directions.
+
+        :param tuple[float, float, float] view: forward direction
+        :param tuple[float, float, float]
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        
+        computed = Quaternion.LookRotation(view, upwards)
+        self.Set(computed.x, computed.y, computed.z, computed.w)
+    
     def ToAngleAxis(self) -> tuple[float, tuple[float, float, float]]:
         """
         Converts a rotation to angle-axis representation (angles in degrees).
