@@ -178,3 +178,25 @@ def test_Lerp_t1():
     assert q.y == approx(q1.y, 2)
     assert q.z == approx(q1.z, 2)
     assert q.w == approx(q1.w, 2)
+
+def test_RotateTowards_limited():
+    q0 = Quaternion(1, 2, 3, 4).normalized()
+    q1 = Quaternion(4, 2, 1, 3).normalized()
+
+    q = Quaternion.RotateTowards(q0, q1, 30)
+
+    assert q.x == approx(0.41432, 2)
+    assert q.y == approx(0.38705, 2)
+    assert q.z == approx(0.43338, 2)
+    assert q.w == approx(0.70051, 2)
+
+def test_RotateTowards_unlimited():
+    q0 = Quaternion(1, 2, 3, 4).normalized()
+    q1 = Quaternion(4, 2, 1, 3).normalized()
+
+    q = Quaternion.RotateTowards(q0, q1)
+
+    assert q.x == approx(0.7303, 2)
+    assert q.y == approx(0.36515, 2)
+    assert q.z == approx(0.18257, 2)
+    assert q.w == approx(0.54772, 2)
