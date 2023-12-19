@@ -110,6 +110,19 @@ class Quaternion:
         angle = math.degrees(angle)
         
         return (angle, axis)
+    
+    def ToString(self, digits = 5):
+        """
+        Returns a nicely formatted string of the Quaternion.
+        Into "(x, y, z, w)" format.
+
+        :param int digits: number of digits after the decimal point
+        :rtype: str
+        :return: string representation
+        """
+        return f"({self.x:.{digits}f}, {self.y:.{digits}f}, {self.z:.{digits}f}, {self.w:.{digits}f})"
+    
+
         
     @property
     def _norm(self) -> float:
