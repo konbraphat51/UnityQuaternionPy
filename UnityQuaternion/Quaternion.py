@@ -90,6 +90,23 @@ class Quaternion:
         """
         return Quaternion(0,0,0,1)
     
+    def __mul__(self, other: Quaternion|tuple[float, float, float]) -> Quaternion|tuple[float, float, float]:
+        """
+        Multiplies two quaternions or Rotate a vector by a quaternion.
+
+        Product of 2 quaternions means that the rotation of q0 is applied first, then q1.
+
+        :param Quaternion|tuple[float, float, float] other: quaternion or vector to be multiplied
+        :rtype: Quaternion|tuple[float, float, float]
+        :return: product of two quaternions or rotated vector
+        """
+        if isinstance(other, Quaternion):
+            return self._multiply_quaternions(other)
+        elif isinstance(other, tuple):
+            return self._rotate_vector(other)
+        else:
+            raise TypeError(f"unsupported operand type(s) for *: 'Quaternion' and '{type(other)}'")
+    
     def ToAngleAxis(self) -> tuple[float, tuple[float, float, float]]:
         """
         Converts a rotation to angle-axis representation (angles in degrees).
@@ -121,9 +138,30 @@ class Quaternion:
         :return: string representation
         """
         return f"({self.x:.{digits}f}, {self.y:.{digits}f}, {self.z:.{digits}f}, {self.w:.{digits}f})"
-    
-
         
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
+    
+    @property
+    def _conjugate(self) -> Quaternion:
+        return Quaternion(-self.x, -self.y, -self.z, self.w)
+    
+    def _multiply_quaternions(self, right:Quaternion) -> Quaternion:
+        x = self.x * right.w + self.w * right.x - self.z * right.y + self.y * right.z
+        y = self.y * right.w + self.z * right.x + self.w * right.y - self.x * right.z
+        z = self.z * right.w - self.y * right.x + self.x * right.y + self.w * right.z
+        w = self.w * right.w - self.x * right.x - self.y * right.y - self.z * right.z
+        
+        return Quaternion(x,y,z,w)
+    
+    def _rotate_vector(self, vector:tuple[float, float, float]) -> tuple[float, float, float]:
+        #rotate
+        normalized = self.normalized
+        inverted = normalized._conjugate
+        q_vector = Quaternion(vector[0], vector[1], vector[2], 0)
+        rotated = normalized * q_vector * inverted
+        
+        #scale
+        norm = self._norm
+        return (rotated.x * norm, rotated.y * norm, rotated.z * norm)
