@@ -297,6 +297,40 @@ class Quaternion:
         
         return Quaternion(x,y,z,w).normalized
     
+    def LookRotation(forward: tuple[float, float, float], upwards: tuple[float, float, float] = (0,1,0)) -> Quaternion:
+        """
+        Creates a rotation with the specified forward and upwards directions.
+        Z: forward, Y: upwards
+
+        See: https://docs.unity3d.com/2019.4/Documentation/ScriptReference/Quaternion.LookRotation.html
+
+        :param tuple[float, float, float] forward: forward direction
+        :param tuple[float, float, float] upwards: upwards direction
+        :rtype: Quaternion
+        :return: quaternion made
+        """
+        
+        z_vec = forward
+        x_vec = _cross_vectors(upwards, z_vec)
+        y_vec = _cross_vectors(z_vec, x_vec)
+        
+        #normalize
+        x_vec_norm = (x_vec[0]**2 + x_vec[1]**2 + x_vec[2]**2)**0.5
+        x_vec = (x_vec[0]/x_vec_norm, x_vec[1]/x_vec_norm, x_vec[2]/x_vec_norm)
+        y_vec_norm = (y_vec[0]**2 + y_vec[1]**2 + y_vec[2]**2)**0.5
+        y_vec = (y_vec[0]/y_vec_norm, y_vec[1]/y_vec_norm, y_vec[2]/y_vec_norm)
+        z_vec_norm = (z_vec[0]**2 + z_vec[1]**2 + z_vec[2]**2)**0.5
+        z_vec = (z_vec[0]/z_vec_norm, z_vec[1]/z_vec_norm, z_vec[2]/z_vec_norm)
+        
+        #first rotation: (1,0,0) -> x_vec
+        first_rotation = Quaternion.FromToRotation((1,0,0), x_vec)
+        
+        #second rotation: (0,1,0) -> y_vec
+        y_axis_rotated_first = first_rotation * (0,1,0)
+        second_rotation = Quaternion.FromToRotation(y_axis_rotated_first, y_vec)
+        
+        return second_rotation * first_rotation
+    
     @property
     def _norm(self) -> float:
         return (self.x**2 + self.y**2 + self.z**2 + self.w**2)**0.5
