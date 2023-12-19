@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-# Copyright (C) 2023 AnimatedWordCloud Project
-# https://github.com/konbraphat51/AnimatedWordCloud
-#
-# Licensed under the MIT License.
-"""
-Setup script for PyThaiNLP.
-
-https://github.com/PyThaiNLP/pythainlp
-"""
 from setuptools import find_packages, setup
 from pathlib import Path
 
