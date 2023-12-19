@@ -9,13 +9,13 @@ readme = (Path(__file__).parent / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="UnityQuaternionPy",
-    version="0.1.0",
+    version="0.1.2",
     description="Immitation of UnityEngine.Quaternion in Python",
     long_description=readme,
     long_description_content_type="text/markdown",
     author="konbraphat51",
-    author_email="konbraphat51[at]gmail.com",
-    url="https://github.com/konbraphat51/UnityQuaternionPy/main",
+    author_email="konbraphat51@gmail.com",
+    url="https://github.com/konbraphat51/UnityQuaternionPy",
     packages=find_packages(),
     test_suite="tests",
     python_requires=">=3.8",
