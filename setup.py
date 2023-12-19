@@ -31,16 +31,13 @@ setup(
     packages=find_packages(),
     test_suite="tests",
     python_requires=">=3.8",
-    package_data={
-    },
+    package_data={},
     include_package_data=True,
     install_requires=requirements_from_file("requirements.txt"),
     license="MIT License",
     zip_safe=False,
-    keywords=[
-    ],
-    classifiers=[
-    ],
+    keywords=[],
+    classifiers=[],
     entry_points={
         # "console_scripts": [
         # ],

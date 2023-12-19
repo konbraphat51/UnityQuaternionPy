@@ -47,16 +47,24 @@ class Quaternion:
             # sinx == 1 (singularity)
             x = math.pi / 2
             y = 0
-            z = math.atan2(2 * _x * _y - 2 * _z * _w, 1 - 2 * _y**2 - 2 * _z**2)
+            z = math.atan2(
+                2 * _x * _y - 2 * _z * _w, 1 - 2 * _y**2 - 2 * _z**2
+            )
         elif abs(sinx + 1) < 0.01:
             # sinx == -1 (singularity)
             x = -math.pi / 2
             y = 0
-            z = math.atan2(2 * _x * _y - 2 * _z * _w, 1 - 2 * _y**2 - 2 * _z**2)
+            z = math.atan2(
+                2 * _x * _y - 2 * _z * _w, 1 - 2 * _y**2 - 2 * _z**2
+            )
         else:
             x = math.asin(-sinx)
-            y = math.atan2(2 * _x * _z + 2 * _y * _w, 1 - 2 * _x**2 - 2 * _y**2)
-            z = math.atan2(2 * _x * _y + 2 * _z * _w, 1 - 2 * _x**2 - 2 * _z**2)
+            y = math.atan2(
+                2 * _x * _z + 2 * _y * _w, 1 - 2 * _x**2 - 2 * _y**2
+            )
+            z = math.atan2(
+                2 * _x * _y + 2 * _z * _w, 1 - 2 * _x**2 - 2 * _z**2
+            )
 
         # convert to degrees
         x = math.degrees(x)
@@ -79,7 +87,9 @@ class Quaternion:
         :return: normalized quaternion
         """
         norm = self._norm
-        return Quaternion(self.x / norm, self.y / norm, self.z / norm, self.w / norm)
+        return Quaternion(
+            self.x / norm, self.y / norm, self.z / norm, self.w / norm
+        )
 
     def identity() -> Quaternion:
         """
@@ -212,7 +222,9 @@ class Quaternion:
 
         return dgrees
 
-    def AngleAxis(angle: float, axis: tuple[float, float, float]) -> Quaternion:
+    def AngleAxis(
+        angle: float, axis: tuple[float, float, float]
+    ) -> Quaternion:
         """
         Creates a rotation which rotates angle degrees around axis.
 
@@ -292,7 +304,9 @@ class Quaternion:
         """
         # normalize
         from_direction_norm = (
-            fromDirection[0] ** 2 + fromDirection[1] ** 2 + fromDirection[2] ** 2
+            fromDirection[0] ** 2
+            + fromDirection[1] ** 2
+            + fromDirection[2] ** 2
         ) ** 0.5
         fromDirection = (
             fromDirection[0] / from_direction_norm,
@@ -396,18 +410,32 @@ class Quaternion:
 
         # normalize
         x_vec_norm = (x_vec[0] ** 2 + x_vec[1] ** 2 + x_vec[2] ** 2) ** 0.5
-        x_vec = (x_vec[0] / x_vec_norm, x_vec[1] / x_vec_norm, x_vec[2] / x_vec_norm)
+        x_vec = (
+            x_vec[0] / x_vec_norm,
+            x_vec[1] / x_vec_norm,
+            x_vec[2] / x_vec_norm,
+        )
         y_vec_norm = (y_vec[0] ** 2 + y_vec[1] ** 2 + y_vec[2] ** 2) ** 0.5
-        y_vec = (y_vec[0] / y_vec_norm, y_vec[1] / y_vec_norm, y_vec[2] / y_vec_norm)
+        y_vec = (
+            y_vec[0] / y_vec_norm,
+            y_vec[1] / y_vec_norm,
+            y_vec[2] / y_vec_norm,
+        )
         z_vec_norm = (z_vec[0] ** 2 + z_vec[1] ** 2 + z_vec[2] ** 2) ** 0.5
-        z_vec = (z_vec[0] / z_vec_norm, z_vec[1] / z_vec_norm, z_vec[2] / z_vec_norm)
+        z_vec = (
+            z_vec[0] / z_vec_norm,
+            z_vec[1] / z_vec_norm,
+            z_vec[2] / z_vec_norm,
+        )
 
         # first rotation: (1,0,0) -> x_vec
         first_rotation = Quaternion.FromToRotation((1, 0, 0), x_vec)
 
         # second rotation: (0,1,0) -> y_vec
         y_axis_rotated_first = first_rotation * (0, 1, 0)
-        second_rotation = Quaternion.FromToRotation(y_axis_rotated_first, y_vec)
+        second_rotation = Quaternion.FromToRotation(
+            y_axis_rotated_first, y_vec
+        )
 
         return second_rotation * first_rotation
 
@@ -422,7 +450,9 @@ class Quaternion:
         return q.normalized
 
     def RotateTowards(
-        rotation_from: Quaternion, rotation_to: Quaternion, maxDegreesDelta: float = 10000
+        rotation_from: Quaternion,
+        rotation_to: Quaternion,
+        maxDegreesDelta: float = 10000,
     ) -> Quaternion:
         """
         Get a rotation between 2 quaternions
@@ -493,10 +523,30 @@ class Quaternion:
         return Quaternion(-self.x, -self.y, -self.z, self.w)
 
     def _multiply_quaternions(self, right: Quaternion) -> Quaternion:
-        x = self.x * right.w + self.w * right.x - self.z * right.y + self.y * right.z
-        y = self.y * right.w + self.z * right.x + self.w * right.y - self.x * right.z
-        z = self.z * right.w - self.y * right.x + self.x * right.y + self.w * right.z
-        w = self.w * right.w - self.x * right.x - self.y * right.y - self.z * right.z
+        x = (
+            self.x * right.w
+            + self.w * right.x
+            - self.z * right.y
+            + self.y * right.z
+        )
+        y = (
+            self.y * right.w
+            + self.z * right.x
+            + self.w * right.y
+            - self.x * right.z
+        )
+        z = (
+            self.z * right.w
+            - self.y * right.x
+            + self.x * right.y
+            + self.w * right.z
+        )
+        w = (
+            self.w * right.w
+            - self.x * right.x
+            - self.y * right.y
+            - self.z * right.z
+        )
 
         return Quaternion(x, y, z, w)
 
