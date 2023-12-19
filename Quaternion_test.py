@@ -70,3 +70,17 @@ def test_LookRotation():
     assert q.y == approx(0.36)
     assert q.z == approx(0.11)
     assert q.w == approx(0.88)
+    
+def test_ToAngleAxis():
+    q = Quaternion(1,1,1,1).normalized
+    angle, axis = q.ToAngleAxis()
+    
+    assert angle == approx(120)
+    assert axis[0] == approx(0.58)
+    assert axis[1] == approx(0.58)
+    assert axis[2] == approx(0.58)
+    
+def test_ToString():
+    q = Quaternion(1,2,3,4)
+    assert q.ToString(2).__class__ == str
+
