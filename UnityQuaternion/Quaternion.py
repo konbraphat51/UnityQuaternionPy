@@ -381,10 +381,10 @@ class Quaternion:
         a = a.normalized
         b = b.normalized
 
-        x = a.x * t + (1 - t) * b.x
-        y = a.y * t + (1 - t) * b.y
-        z = a.z * t + (1 - t) * b.z
-        w = a.w * t + (1 - t) * b.w
+        x = a.x * (1 -t) + t * b.x
+        y = a.y * (1 - t) + t * b.y
+        z = a.z * (1-t) + t * b.z
+        w = a.w * (1-t) + t * b.w
 
         return Quaternion(x, y, z, w).normalized
 
