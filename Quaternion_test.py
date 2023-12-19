@@ -120,3 +120,11 @@ def test_Dot():
     result = Quaternion.Dot(q0, q1)
 
     assert result == approx(23)
+
+def test_Euler():
+    q = Quaternion.Euler(30, 60, 90)
+
+    assert q.x == approx(0.5, 1)
+    assert q.y == approx(0.18, 1)
+    assert q.z == approx(0.5, 1)
+    assert q.w == approx(0.68, 1)
