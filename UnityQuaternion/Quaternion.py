@@ -89,6 +89,27 @@ class Quaternion:
         :return: identity quaternion
         """
         return Quaternion(0,0,0,1)
+    
+    def ToAngleAxis(self) -> tuple[float, tuple[float, float, float]]:
+        """
+        Converts a rotation to angle-axis representation (angles in degrees).
+
+        :rtype: tuple[float, tuple[float, float, float]]
+        :return: (angle, axis)
+        """
+        #based on https://qiita.com/aa_debdeb/items/3d02e28fb9ebfa357eaf#%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E8%A7%92%E3%81%8B%E3%82%89%E3%82%AF%E3%82%A9%E3%83%BC%E3%82%BF%E3%83%8B%E3%82%AA%E3%83%B3
+        
+        normalized = self.normalized
+        
+        angle = 2 * math.acos(normalized.w)
+        
+        sin_half = math.sin(angle / 2)
+        axis = (normalized.x / sin_half, normalized.y / sin_half, normalized.z / sin_half)
+        
+        # convert to degrees
+        angle = math.degrees(angle)
+        
+        return (angle, axis)
         
     @property
     def _norm(self) -> float:
