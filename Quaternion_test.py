@@ -84,3 +84,14 @@ def test_ToString():
     q = Quaternion(1,2,3,4)
     assert q.ToString(2).__class__ == str
 
+def test_multiply():
+    q1 = Quaternion(1,2,3,4).normalized
+    q2 = Quaternion(4,3,2,1).normalized
+
+    q = q1 * q2
+    
+    assert q.x == approx(0.4)
+    assert q.y == approx(0.8)
+    assert q.z == approx(0.2)
+    assert q.w == approx(-0.4)
+    
