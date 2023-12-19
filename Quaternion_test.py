@@ -23,3 +23,10 @@ def test_eulerAngles():
     assert e[0] == approx(352.34)
     assert e[1] == approx(47.43)
     assert e[2] == approx(70.35)
+    
+def test_normalize():
+    q = Quaternion(1,2,3,4)
+    assert q.w == approx(0.1825742)
+    assert q.x == approx(0.3651484)
+    assert q.y == approx(0.5477226)
+    assert q.z == approx(0.7302967)
