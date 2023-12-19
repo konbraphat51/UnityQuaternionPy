@@ -113,3 +113,10 @@ def test_Angle():
 
     assert Quaternion.Angle(q0, q1) == approx(79.88902, 2)
 
+def test_Dot():
+    q0 = Quaternion(1, 2, 3, 4)
+    q1 = Quaternion(4, 2, 1, 3)
+
+    result = Quaternion.Dot(q0, q1)
+
+    assert result == approx(23)
