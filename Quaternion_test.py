@@ -30,18 +30,18 @@ def test_eulerAngles():
 
 def test_normalize():
     q = Quaternion(1, 2, 3, 4)
-    assert q.w == approx(0.1825742, 2)
-    assert q.x == approx(0.3651484, 2)
-    assert q.y == approx(0.5477226, 2)
-    assert q.z == approx(0.7302967, 2)
+    assert q.x == approx(0.1825742, 2)
+    assert q.y == approx(0.3651484, 2)
+    assert q.z == approx(0.5477226, 2)
+    assert q.w == approx(0.7302967, 2)
 
 
 def test_normalized():
     q = Quaternion(1, 2, 3, 4).normalized
-    assert q.w == approx(0.1825742, 2)
-    assert q.x == approx(0.3651484, 2)
-    assert q.y == approx(0.5477226, 2)
-    assert q.z == approx(0.7302967, 2)
+    assert q.x == approx(0.1825742, 2)
+    assert q.y == approx(0.3651484, 2)
+    assert q.z == approx(0.5477226, 2)
+    assert q.w == approx(0.7302967, 2)
 
 
 def test_AngleAxis():
@@ -55,10 +55,10 @@ def test_AngleAxis():
 def test_Set():
     q = Quaternion(1, 2, 3, 4)
     q.Set(5, 6, 7, 8)
-    assert q.w == approx(5)
-    assert q.x == approx(6)
-    assert q.y == approx(7)
-    assert q.z == approx(8)
+    assert q.x == approx(5)
+    assert q.y == approx(6)
+    assert q.z == approx(7)
+    assert q.w == approx(8)
 
 
 def test_FromToRotation():
