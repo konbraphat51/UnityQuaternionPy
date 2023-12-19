@@ -30,6 +30,7 @@ def test_eulerAngles():
 
 def test_normalize():
     q = Quaternion(1, 2, 3, 4)
+    q = Quaternion.Normalize(q)
     assert q.x == approx(0.1825742, 2)
     assert q.y == approx(0.3651484, 2)
     assert q.z == approx(0.5477226, 2)
